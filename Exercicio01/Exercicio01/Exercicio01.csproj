@@ -91,8 +91,16 @@
     <Content Include="css\font-awesome.css" />
     <Content Include="css\font-awesome.min.css" />
     <Content Include="DataBase\Estrutura.sql" />
+    <Content Include="DataBase\Meu_servidor.mdf" />
+    <Content Include="DataBase\Meu_servidor_log.ldf">
+      <DependentUpon>Meu_servidor.mdf</DependentUpon>
+    </Content>
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
+    <Content Include="materialize\css\materialize.css" />
+    <Content Include="materialize\css\materialize.min.css" />
+    <Content Include="materialize\js\materialize.js" />
+    <Content Include="materialize\js\materialize.min.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -120,6 +128,8 @@
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="materialize\LICENSE" />
+    <Content Include="materialize\README.md" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -148,17 +158,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\EscolaController.cs" />
     <Compile Include="DataBase\BancoDados.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Notas.cs" />
+    <Compile Include="Models\Nota.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Respositorio\SistemaNotasRepositorio.cs" />
+    <Compile Include="Respositorio\EscolaRepositorio.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
+    <Content Include="Views\Escola\Index.cshtml" />
+    <Content Include="Shared\Master.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -168,7 +181,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
