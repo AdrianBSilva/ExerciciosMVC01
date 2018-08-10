@@ -1,0 +1,16 @@
+﻿@{
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+
+
+<div>
+    <form action="/Escola/Store"method="post">
+        <div class="shadow-lg p-3 mb-5 bg-white rounded" id="div-campo-nome">
+            <label fro="campo-nome">Nome</label>
+            <input type="text" class="form-control" name="Notas.Nome" id="campo-nome" placeholder="Digite o nome do aluno" required="required" value="@ViewBag.Notas.Nome">
+            <span class="text-danger">@Html.ValidationMessage("Notas.Nome")</span>
+        </div>
+
+    </form>
+</div>
+

@@ -92,9 +92,6 @@
     <Content Include="css\font-awesome.min.css" />
     <Content Include="DataBase\Estrutura.sql" />
     <Content Include="DataBase\Meu_servidor.mdf" />
-    <Content Include="DataBase\Meu_servidor_log.ldf">
-      <DependentUpon>Meu_servidor.mdf</DependentUpon>
-    </Content>
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="materialize\css\materialize.css" />
@@ -163,7 +160,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Nota.cs" />
+    <Compile Include="Models\Notas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Respositorio\EscolaRepositorio.cs" />
   </ItemGroup>
@@ -171,7 +168,8 @@
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Views\Escola\Index.cshtml" />
-    <Content Include="Shared\Master.cshtml" />
+    <Content Include="Views\Shared\Master.cshtml" />
+    <Content Include="Views\Escola\Cadastro.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

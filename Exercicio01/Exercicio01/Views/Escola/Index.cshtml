@@ -1,8 +1,13 @@
 ﻿
 @{
-    Layout = "~/Shared/Master.cshtml";
+    Layout = "~/Views/Shared/Master.cshtml";
 }
 
+<div class="row">
+    <div class="col-md-12 float-right">
+        @Html.ActionLink("Novo Aluno","Cadastro","Escola", new { @class = "btn btn-primary btn-outline-dark float-right mr-2 mb-2 mt-2" })
+    </div>
+</div>
   <div> 
       <table class="table table-striped table-dark">
           <thead>
@@ -15,13 +20,24 @@
                   <th>Média</th>
                   <th>Faltas</th>
                   <th>Frequência</th>
-                  <th>Situação</th>
               </tr>
           </thead>
           <tbody>
-              <tr>
+                @foreach (Exercicio01.Models.Repositorio.Notas nota in @ViewBag.Notas)
+                {
+                    double media = (@nota.Nota1 + @nota.Nota2 + @nota.Nota3) / 3;
+                    <tr>
+                        <td>@nota.Nome</td>
+                        <td>@nota.CodrigoDaMaricula</td>
+                        <td>@nota.Nota1</td>
+                        <td>@nota.Nota2</td>
+                        <td>@nota.Nota3</td>
+                        <td>@media</td>
+                        <td>@nota.Frequencia</td>
+                        <td>@nota.Faltas</td>
+                    </tr>
 
-              </tr>
+                }
           </tbody>
           <tfoot>
               <tr>
@@ -33,7 +49,6 @@
                   <th>Média</th>
                   <th>Faltas</th>
                   <th>Frequência</th>
-                  <th>Situação</th>
               </tr>
           </tfoot>
       </table>

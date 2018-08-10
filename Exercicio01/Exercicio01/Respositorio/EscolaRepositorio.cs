@@ -9,18 +9,18 @@ using System.Web;
 
 namespace Exercicio01.Respositorio
 {
-    public class EscolaRepositorio
+    public class NotasRepositorio
     {
-        public List<Nota> ObterTodos()
+        public List<Notas> ObterTodos()
         {
-            List<Nota> notas = new List<Nota>();
+            List<Notas> notas = new List<Notas>();
             SqlCommand command = new BancoDados().ObterConexao();
-            command.CommandText = "SELECT id,  nome, matricula, nota01, nota02, nota03, frequencia, faltas FROM escola";
+            command.CommandText = "SELECT id, nome, matricula, nota01, nota02, nota03,(nota01 + nota02 + not03)/3 'Média',  frequencia, faltas FROM notas";
             DataTable tabela = new DataTable();
             tabela.Load(command.ExecuteReader());
             foreach (DataRow linha in tabela.Rows)
             {
-                Nota nota = new Nota()
+                Notas nota = new Notas()
                 {
                     Id = Convert.ToInt32(linha[0].ToString()),
                     Nome = linha[1].ToString(),
@@ -36,10 +36,10 @@ namespace Exercicio01.Respositorio
             return notas;
         }
 
-        public int Cadastrar(Nota nota)
+        public int Cadastrar(Notas nota)
         {
             SqlCommand command = new BancoDados().ObterConexao();
-            command.CommandText = "INSERT INTO escola (nome, matricula, nota01, nota02, nota03, frequencia, faltas) OUTPUT INSERTED.ID VALUES(@NOME, @MATRICULA, @NOTA01, @NOTA02, @NOTA03, @FREQUENCIA, @FALTAS)";
+            command.CommandText = "INSERT INTO notas (nome, matricula, nota01, nota02, nota03, frequencia, faltas) OUTPUT INSERTED.ID VALUES(@NOME, @MATRICULA, @NOTA01, @NOTA02, @NOTA03, @FREQUENCIA, @FALTAS)";
             command.Parameters.AddWithValue("@NOME", nota.Nome);
             command.Parameters.AddWithValue("@MATRICULA", nota.CodrigoDaMaricula);
             command.Parameters.AddWithValue("@NOTA01", nota.Nota1);
@@ -51,10 +51,10 @@ namespace Exercicio01.Respositorio
             return id;
         }
 
-        public bool Alterar(Nota nota)
+        public bool Alterar(Notas nota)
         {
             SqlCommand command = new BancoDados().ObterConexao();
-            command.CommandText = "UPDATE escola SET nome = @NOME, matricula = @MATRICULA, nota01 = @NOTA01, nota02 = @NOTA02, nota03 = @NOTA03, frequencia = @FREQUENCIA, faltas = @FALTAS WHERE id = @ID";
+            command.CommandText = "UPDATE notas SET nome = @NOME, matricula = @MATRICULA, nota01 = @NOTA01, nota02 = @NOTA02, nota03 = @NOTA03, frequencia = @FREQUENCIA, faltas = @FALTAS WHERE id = @ID";
             command.Parameters.AddWithValue("@NOME", nota.Nome);
             command.Parameters.AddWithValue("@MATRICULA", nota.CodrigoDaMaricula);
             command.Parameters.AddWithValue("@NOTA01", nota.Nota1);
@@ -69,25 +69,25 @@ namespace Exercicio01.Respositorio
         public bool Excluir(int id)
         {
             SqlCommand command = new BancoDados().ObterConexao();
-            command.CommandText = "DELETE FROM escola WHERE id = @ID";
+            command.CommandText = "DELETE FROM notas WHERE id = @ID";
             command.Parameters.AddWithValue("@ID", id);
             return command.ExecuteNonQuery() == 1;
 
 
         }
 
-        public Nota ObterPeloId(int id)
+        public Notas ObterPeloId(int id)
         {
 
-            Nota nota = null;
+            Notas nota = null;
             SqlCommand command = new BancoDados().ObterConexao();
-            command.CommandText = "SELECT nome, matricula, nota01, nota02, nota03, frequencia, faltas FROM escola WHERE id = @ID";
+            command.CommandText = "SELECT nome, matricula, nota01, nota02, nota03, frequencia, faltas FROM notas WHERE id = @ID";
             command.Parameters.AddWithValue("@ID", id);
             DataTable tabela = new DataTable();
             tabela.Load(command.ExecuteReader());
             if (tabela.Rows.Count == 1)
             {
-                nota = new Nota();
+                nota = new Notas();
                 nota.Id = id;
                 nota.Nome = tabela.Rows[0][0].ToString();
                 nota.CodrigoDaMaricula = tabela.Rows[0][2].ToString();

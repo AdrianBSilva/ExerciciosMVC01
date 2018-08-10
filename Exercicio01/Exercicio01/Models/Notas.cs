@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Exercicio01.Models.Repositorio
 {
-    public class Nota
+    public class Notas
     {
         public int Id { get; set; }
 
@@ -35,6 +35,7 @@ namespace Exercicio01.Models.Repositorio
         [Required(ErrorMessage="Faltas deve ser preenchida")]
         [Range(0, 200, ErrorMessage="O número de faltas deve ser entre 0 e 200")]
         public byte Faltas { get; set; }
+
 
         
 
